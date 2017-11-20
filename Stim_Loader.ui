@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1592</width>
-    <height>641</height>
+    <width>1489</width>
+    <height>1168</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -53,8 +53,8 @@
         <brush brushstyle="SolidPattern">
          <color alpha="255">
           <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <green>43</green>
+          <blue>39</blue>
          </color>
         </brush>
        </colorrole>
@@ -82,8 +82,8 @@
         <brush brushstyle="SolidPattern">
          <color alpha="255">
           <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <green>43</green>
+          <blue>39</blue>
          </color>
         </brush>
        </colorrole>
@@ -111,8 +111,8 @@
         <brush brushstyle="SolidPattern">
          <color alpha="255">
           <red>255</red>
-          <green>255</green>
-          <blue>255</blue>
+          <green>43</green>
+          <blue>39</blue>
          </color>
         </brush>
        </colorrole>
@@ -151,19 +151,76 @@
      <string>Start Stimulus</string>
     </property>
    </widget>
+   <widget class="QSlider" name="exposure_slider">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>360</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1000</number>
+    </property>
+    <property name="maximum">
+     <number>100000</number>
+    </property>
+    <property name="singleStep">
+     <number>1000</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="exposure_slider_label">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>430</y>
+      <width>351</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Exposure = 1000 ms</string>
+    </property>
+   </widget>
+   <widget class="GraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>750</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1592</width>
+     <width>1489</width>
      <height>38</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
