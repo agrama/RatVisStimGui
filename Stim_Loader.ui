@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_loadstim">
+   <widget class="QPushButton" name="filepath_pushButton">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -24,10 +24,10 @@
      </rect>
     </property>
     <property name="text">
-     <string>Choose Stimulus</string>
+     <string>Choose Directory to Save</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_stimpath">
+   <widget class="QLineEdit" name="savedirectory_lineEdit">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -37,13 +37,13 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_start_stim">
+   <widget class="QPushButton" name="startStim_pushButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>350</y>
-      <width>361</width>
-      <height>121</height>
+      <x>930</x>
+      <y>510</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="palette">
@@ -154,10 +154,10 @@
    <widget class="QSlider" name="exposure_slider">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>360</y>
-      <width>231</width>
-      <height>51</height>
+      <x>510</x>
+      <y>230</y>
+      <width>271</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="minimum">
@@ -176,10 +176,10 @@
    <widget class="QLabel" name="exposure_slider_label">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>430</y>
-      <width>351</width>
-      <height>41</height>
+      <x>540</x>
+      <y>250</y>
+      <width>280</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -188,17 +188,75 @@
      </font>
     </property>
     <property name="text">
-     <string>Exposure = 1000 ms</string>
+     <string>Exposure = 1000 us</string>
     </property>
    </widget>
    <widget class="GraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>750</y>
-      <width>256</width>
-      <height>192</height>
+      <x>90</x>
+      <y>230</y>
+      <width>401</width>
+      <height>311</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QSlider" name="gain_slider">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>290</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>1200</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="gain_slider_label">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>320</y>
+      <width>280</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Gain = 1.0000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="framerate_label">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>260</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Frame rate =  Hz</string>
     </property>
    </widget>
   </widget>
@@ -208,7 +266,7 @@
      <x>0</x>
      <y>0</y>
      <width>1489</width>
-     <height>38</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
