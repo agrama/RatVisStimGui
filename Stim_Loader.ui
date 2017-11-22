@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1489</width>
-    <height>1168</height>
+    <width>1135</width>
+    <height>926</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="filepath_pushButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>120</y>
+      <x>0</x>
+      <y>110</y>
       <width>171</width>
       <height>46</height>
      </rect>
@@ -27,13 +27,13 @@
      <string>Choose Directory to Save</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="savedirectory_lineEdit">
+   <widget class="QLineEdit" name="file_path_lineEdit">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>120</y>
-      <width>1041</width>
-      <height>51</height>
+      <x>180</x>
+      <y>110</y>
+      <width>881</width>
+      <height>41</height>
      </rect>
     </property>
    </widget>
@@ -246,7 +246,7 @@
      <rect>
       <x>780</x>
       <y>260</y>
-      <width>121</width>
+      <width>151</width>
       <height>21</height>
      </rect>
     </property>
@@ -259,13 +259,115 @@
      <string>Frame rate =  Hz</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="stim_comboBox">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>600</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Leftbar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Rightbar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Upbar</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Downbar</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>600</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select stim</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="stim_trials_slider_label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>640</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string># trials</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="stim_trials_slider">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>640</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>0</number>
+    </property>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>5</number>
+    </property>
+    <property name="pageStep">
+     <number>10</number>
+    </property>
+    <property name="sliderPosition">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="stim_trial_label">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>600</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Leftbar: 0 Rightbar: 0 Upbar: 0 Downbar: 0</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1489</width>
+     <width>1135</width>
      <height>21</height>
     </rect>
    </property>
