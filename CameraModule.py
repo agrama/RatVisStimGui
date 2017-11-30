@@ -20,8 +20,8 @@ class CameraModule(Process):
             camera.close()
             print('could not open camera')
             self.shared.main_program_still_running.value = 0
-        camera.properties['BinningHorizontalMode'] = 'Average'
-        camera.properties['BinningVerticalMode'] = 'Average'
+        # camera.properties['BinningHorizontalMode'] = 'Average'
+        # camera.properties['BinningVerticalMode'] = 'Average'
         camera.properties['Gain'] = 1
         camera.properties['BinningVertical'] = 4
         camera.properties['BinningHorizontal'] = 4
@@ -50,17 +50,22 @@ class CameraModule(Process):
                 stim_trial_count = np.ctypeslib.as_array(self.shared.stim_trial_count)
                 path_to_file = os.path.join(bytearray(self.shared.save_path[:self.shared.save_path_len.value]).decode(),
                            stim_type+ '_trial_' + str(stim_trial_count[stim_dict[stim_type]]+1) +'.tif')
-                tif = tiff.TiffWriter(path_to_file, append=True)
-                num_frames=np.ceil(self.shared.stim_trials.value*10*camera.properties['ResultingFrameRate'])
+                tif = tiff.TiffWriter(path_to_file, append=True,imagej=True)
+                num_frames = (self.shared.stim_repetitions.value*self.shared.inter_stim_frame_interval.value) + 2*self.shared.waitframes.value
                 self.shared.stim_on.value = 1
                 first_time=time.time()
                 for i in range(0,int(num_frames)):
                     img = camera_generator.__next__()
+                    self.shared.framenum.value += 1
                     second_time = time.time()
-                    tif.save(img)
+                    tif.save(img,metadata={'Framerate':self.shared.framerate.value,'Stimrate':(self.shared.framerate.value /self.shared.inter_stim_frame_interval.value)})
+                    data = img.flatten()
+                    self.shared.frame_len.value = len(data)
+                    self.shared.frame[:len(data)] = data
                     # print(1/(second_time-first_time))
                     first_time = second_time
-                self.shared.start_exp.value=0
+                self.shared.start_exp.value = 0
+                self.shared.framenum.value = 0
                 tif.close()
         camera.close()
         print('Camera is closed')

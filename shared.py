@@ -11,7 +11,7 @@ class Shared():
         #camera input
         self.camera_exposure = Value("i", 1000)
         self.camera_exposure_update_requested = Value("b", 0)
-        self.camera_gain = Value('f', 5.0)
+        self.camera_gain = Value('f', 1.0)
         self.camera_gain_update_requested = Value('b', 0)
         #path input
         self.save_path = sharedctypes.RawArray(ctypes.c_ubyte, 2000)
@@ -19,15 +19,18 @@ class Shared():
         #stim input
         self.stim_type = sharedctypes.RawArray(ctypes.c_ubyte,500)
         self.stim_type_len = Value('i',0)
-        self.stim_trials = Value('i',0)
+        self.stim_repetitions = Value('i',0)
         self.stim_trial_count = sharedctypes.RawArray(ctypes.c_ubyte,4)
+        self.waitframes = Value('i',0)
+        self.inter_stim_frame_interval = Value('i', 100)
 
         ### camera capture
-        self.frame = sharedctypes.RawArray(ctypes.c_int8, 500*500)
+        self.frame = sharedctypes.RawArray(ctypes.c_int16, 500*500)
         self.frame_len = Value("i", 0)
         self.frame_width = Value("i", 200)
         self.frame_height = Value("i", 200)
         self.framerate = Value("f", 0)
+        self.framenum = Value('i',0)
 
         ### stimulus stuff
         self.start_exp = Value('b',0)

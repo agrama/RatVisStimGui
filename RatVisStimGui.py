@@ -26,15 +26,17 @@ if __name__ == "__main__":
             self.filepath_pushButton.clicked.connect(self.filepath_pushButton_clicked)
             self.file_path_lineEdit.textChanged.connect(self.file_path_lineEdit_textChanged)
 
-            ### stimulus selector
+            ### stimulus/stim params selector
             self.stim_comboBox.activated[str].connect(self.stim_comboBox_activated)
             self.startStim_pushButton.clicked.connect(self.startStim_pushButton_clicked)
-            self.stim_trials_slider.valueChanged[int].connect(self.stim_trials_slider_value_changed)
+            self.stim_repetitions_slider.valueChanged[int].connect(self.stim_repetitions_slider_value_changed)
+            self.waitframes_spinBox.valueChanged[int].connect(self.waitframes_spinBox_value_changed)
+            self.inter_stim_frame_interval_spinBox.valueChanged[int].connect(self.inter_stim_frame_interval_spinBox_value_changed)
 
 
             ### change exposure and gain
-            self.exposure_slider.valueChanged[int].connect(self.exposure_slider_value_changed)
-            self.gain_slider.valueChanged[int].connect(self.gain_slider_value_changed)
+            self.exposure_spinBox.valueChanged[int].connect(self.exposure_spinBox_value_changed)
+            self.gain_doubleSpinBox.valueChanged[float].connect(self.gain_doubleSpinBox_value_changed)
 
             self.pyqtgraph_image_item = pg.ImageItem(image=np.random.randint(0,255,(250, 250)))
             # self.graphicsView.setAspectLocked(True)
@@ -64,19 +66,25 @@ if __name__ == "__main__":
             text = text.encode()
             self.shared.stim_type_len.value = len(text)
             self.shared.stim_type[:self.shared.stim_type_len.value] = text
-        def stim_trials_slider_value_changed(self,value):
-            self.shared.stim_trials.value = value
-            self.stim_trials_slider_label.setText('# trials = %d'%(value))
+        def stim_repetitions_slider_value_changed(self,value):
+            self.shared.stim_repetitions.value = value
+            self.stim_repetitions_slider_label.setText('# stim repetitions = %d'%(value))
         def startStim_pushButton_clicked(self):
             self.shared.start_exp.value = 1
-        def exposure_slider_value_changed(self,value):
-            self.exposure_slider_label.setText('Exposure = %d ms'%(value))
+            self.startStim_pushButton.setStyleSheet('QPushButton{background-color: rgb(255, 43, 39);}')
+        def waitframes_spinBox_value_changed(self,value):
+            self.shared.waitframes.value = value
+        def inter_stim_frame_interval_spinBox_value_changed(self,value):
+            self.shared.inter_stim_frame_interval.value = value
+            self.stim_frequency_label.setText('Stim Repetition Frequency (Hz) - %.3f'%(self.shared.framerate.value/value))
+        def exposure_spinBox_value_changed(self,value):
             self.framerate_label.setText('Frame rate = %.2f Hz'%self.shared.framerate.value)
+            self.stim_frequency_label.setText(
+                'Stim Repetition Frequency (Hz) - %.3f' % (self.shared.framerate.value /self.shared.inter_stim_frame_interval.value))
             self.shared.camera_exposure.value = value
             self.shared.camera_exposure_update_requested.value = 1
-        def gain_slider_value_changed(self,value):
-            self.gain_slider_label.setText('Gain = %f'%(value/100))
-            self.shared.camera_gain.value = value/100
+        def gain_doubleSpinBox_value_changed(self,value):
+            self.shared.camera_gain.value = value
             self.shared.camera_gain_update_requested.value = 1
 
         def updateData(self):
@@ -85,11 +93,14 @@ if __name__ == "__main__":
             frame = np.ctypeslib.as_array(self.shared.frame)[:self.shared.frame_len.value]
             if len(frame)>0:
                 frame = frame.reshape((self.shared.frame_height.value,self.shared.frame_width.value))
-                self.pyqtgraph_image_item.setImage(frame.T,autoLevels=False)
+                frame=(255*(frame/4096.0)).astype(np.uint8)
+                self.pyqtgraph_image_item.setImage(frame.T,autoLevels=False,autoDownsample=True)
                 self.pyqtgraph_image_item.setRect(self.viewRect)
             self.stim_trial_label.setText('Leftbar: %d Rightbar: %d Upbar: %d Downbar: %d'
                                           % (stim_trial_count[0], stim_trial_count[1]
                                              , stim_trial_count[2], stim_trial_count[3]))
+            if self.shared.start_exp.value ==0:
+                self.startStim_pushButton.setStyleSheet('QPushButton{background-color: rgb(43, 255, 39);}')
         def closeEvent(self, a0: QtGui.QCloseEvent):
             self.shared.main_program_still_running.value = 0
             self.close()

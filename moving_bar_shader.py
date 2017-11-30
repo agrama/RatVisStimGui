@@ -41,12 +41,12 @@ my_shader = [
 loadPrcFileData("",
                 """sync-video #f
                 fullscreen #f
-                win-origin 0 0
+                win-origin 1920 0
                 undecorated #t
                 cursor-hidden #t
                 win-size %d %d
                 show-frame-rate-meter #f
-                """ % (1000, 1000))
+                """ % (1920, 1920))
 
 class MyApp(ShowBase):
     def __init__(self, shared):
@@ -57,7 +57,7 @@ class MyApp(ShowBase):
         self.accept('escape', self.escapeAction)
         self.winsize = 1000
         self.x = np.zeros((self.winsize, self.winsize), dtype=np.uint8)
-        self.barwidth = 20
+        self.barwidth = 40
 
         self.tex = Texture("texture")
         self.tex.setMagfilter(Texture.FTLinear)
