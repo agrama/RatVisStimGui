@@ -28,11 +28,13 @@ my_shader = [
                 out vec4 gl_FragColor;
                 uniform float x_shift;
                 uniform float y_shift;
+                uniform float timer;
 
                 void main() {
 
                  vec2 texcoord_translated = vec2(texcoord.x-x_shift , texcoord.y-y_shift);
                  vec4 color0 = texture(p3d_Texture0, texcoord_translated);
+                 color0 = (color0-0.5)*sign(sin(2*3.14*timer*5)) +0.5;
                  gl_FragColor = color0;
                }
             """
@@ -55,9 +57,9 @@ class MyApp(ShowBase):
         self.shared = shared
         self.disableMouse()
         self.accept('escape', self.escapeAction)
-        self.winsize = 1000
-        self.x = np.zeros((self.winsize, self.winsize), dtype=np.uint8)
-        self.barwidth = 40
+        self.winsize = 200
+        self.x = 128*np.ones((self.winsize, self.winsize), dtype=np.uint8)
+        self.barwidth = 8
 
         self.tex = Texture("texture")
         self.tex.setMagfilter(Texture.FTLinear)
@@ -82,7 +84,7 @@ class MyApp(ShowBase):
         self.my_shader = Shader.make(Shader.SLGLSL, my_shader[0], my_shader[1])
 
         self.cardnode.setShader(self.my_shader)
-        self.setBackgroundColor(0, 0, 0)
+        self.setBackgroundColor(0.5, 0.5, 0.5)
         self.cardnode.hide()
 
     def escapeAction(self):

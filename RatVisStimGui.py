@@ -96,9 +96,9 @@ if __name__ == "__main__":
                 frame=(255*(frame/4096.0)).astype(np.uint8)
                 self.pyqtgraph_image_item.setImage(frame.T,autoLevels=False,autoDownsample=True)
                 self.pyqtgraph_image_item.setRect(self.viewRect)
-            self.stim_trial_label.setText('Leftbar: %d Rightbar: %d Upbar: %d Downbar: %d'
+            self.stim_trial_label.setText('Leftbar: %d Rightbar: %d Upbar: %d Downbar: %d FlickerSquare: %d'
                                           % (stim_trial_count[0], stim_trial_count[1]
-                                             , stim_trial_count[2], stim_trial_count[3]))
+                                             , stim_trial_count[2], stim_trial_count[3], stim_trial_count[4]))
             if self.shared.start_exp.value ==0:
                 self.startStim_pushButton.setStyleSheet('QPushButton{background-color: rgb(43, 255, 39);}')
         def closeEvent(self, a0: QtGui.QCloseEvent):

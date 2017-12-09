@@ -19,9 +19,9 @@ class Shared():
         #stim input
         self.stim_type = sharedctypes.RawArray(ctypes.c_ubyte,500)
         self.stim_type_len = Value('i',0)
-        self.stim_repetitions = Value('i',0)
-        self.stim_trial_count = sharedctypes.RawArray(ctypes.c_ubyte,4)
-        self.waitframes = Value('i',0)
+        self.stim_repetitions = Value('i',1)
+        self.stim_trial_count = sharedctypes.RawArray(ctypes.c_ubyte,5)
+        self.waitframes = Value('i',50)
         self.inter_stim_frame_interval = Value('i', 100)
 
         ### camera capture

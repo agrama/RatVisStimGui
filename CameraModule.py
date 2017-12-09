@@ -25,11 +25,12 @@ class CameraModule(Process):
         camera.properties['Gain'] = 1
         camera.properties['BinningVertical'] = 4
         camera.properties['BinningHorizontal'] = 4
+        camera.properties['PixelFormat'] = 'Mono12'
         self.shared.frame_width.value = camera.properties['Width']
         self.shared.frame_height.value = camera.properties['Height']
         camera.properties['ExposureTime'] = 1000
         self.shared.framerate.value = camera.properties['ResultingFrameRate']
-        stim_dict = {'Leftbar':0,'Rightbar':1,'Upbar':2,'Downbar':3} # for accessing trial number from shared variable
+        stim_dict = {'Leftbar':0,'Rightbar':1,'Upbar':2,'Downbar':3,'FlickerGabor':4} # for accessing trial number from shared variable
         camera_generator = camera.grab_images(-1)
         while self.shared.main_program_still_running.value == 1:
             # print('wtf')

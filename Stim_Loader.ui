@@ -222,6 +222,11 @@
      </item>
      <item>
       <property name="text">
+       <string>FlickerGabor</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>Leftbar</string>
       </property>
      </item>
@@ -246,12 +251,12 @@
       <rect>
        <x>20</x>
        <y>150</y>
-       <width>241</width>
+       <width>311</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
-      <string>Leftbar: 0 Rightbar: 0 Upbar: 0 Downbar: 0</string>
+      <string>Leftbar: 0 Rightbar: 0 Upbar: 0 Downbar: 0 FlickerGabor: 0</string>
      </property>
     </widget>
     <widget class="QLabel" name="stim_repetitions_slider_label">
